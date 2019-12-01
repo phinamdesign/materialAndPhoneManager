@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit material</title>
+</head>
+<body>
+    <div>
+        <h1>Edit Material</h1>
+        <p>
+            <a href="/materials">List material</a>
+        </p>
+        <th:block th:if="${message}">
+            <p th:text="${message}"></p>
+        </th:block>
+        <form th:action="@{/edit-material}" th:object="${material}" method="post">
+            <input th:type="hidden" name="id" th:field="*{id}">
+            <table>
+                <tr>
+                    <td>Material name :</td>
+                    <td><input type="text" th:field="*{name}"></td>
+                </tr>
+                <tr>
+                    <td>Material importDate :</td>
+                    <td><input type="text" th:field="*{importDate}"></td>
+                </tr>
+                <tr>
+                    <td>Material description :</td>
+                    <td><input type="text" th:field="*{description}"></td>
+                </tr>
+                <tr>
+                    <td>Material quantity :</td>
+                    <td><input type="text" th:field="*{quantity}"></td>
+                </tr>
+                <tr>
+                    <td>Material price :</td>
+                    <td><input type="text" th:field="*{price}"></td>
+                </tr>
+                <tr>
+                    <td>Province:</td>
+                    <td>
+                        <select name="supplier">
+                            <option th:each="p : ${suppliers}"
+                                    th:value="${p.id}"
+                                    th:text="${p.name}"
+                                    th:selected="(${p.id} == *{supplier.id})"></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Update"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

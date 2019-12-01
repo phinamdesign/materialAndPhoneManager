@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Supplier</title>
+</head>
+<body>
+    <div>
+        <h1>Create Supplier</h1>
+        <p>
+            <a href="/suppliers">List Supplier</a>
+        </p>
+        <th:block th:if="${message}">
+            <p th:text="${message}"></p>
+        </th:block>
+        <form th:action="@{/create-supplier}" th:object="${supplier}" method="post">
+            <table>
+                <tr>
+                    <td>Supplier name :</td>
+                    <td><input type="text" th:field="*{name}"></td>
+                </tr>
+                <tr>
+                    <td>Supplier description :</td>
+                    <td><input type="text" th:field="*{description}"></td>
+                </tr>
+                <tr>
+                    <td>Supplier Address :</td>
+                    <td><input type="text" th:field="*{address}"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Create"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

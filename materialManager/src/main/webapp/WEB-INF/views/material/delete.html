@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Material</title>
+</head>
+<body>
+    <div>
+        <h1>Delete Material</h1>
+        <h2>Bạn chắc chắn muốn xóa ?</h2>
+        <p>
+            <a href="/materials">List Material</a>
+        </p>
+        <form th:action="@{/delete-material}" th:object="${material}" method="post">
+                <input th:type="hidden" name="id" th:field="*{id}">
+                <table>
+                    <tr>
+                        <td>Material name :</td>
+                        <td><input th:value="${material.name}"></td>
+                    </tr>
+                    <tr>
+                        <td>Material importDate :</td>
+                        <td><input th:value="${material.importDate}"></td>
+                    </tr>
+                    <tr>
+                        <td>Material description :</td>
+                        <td><input th:value="${material.description}"></td>
+                    </tr>
+                    <tr>
+                        <td>Material quantity :</td>
+                        <td><input th:value="${material.quantity}"></td>
+                    </tr>
+                    <tr>
+                        <td>Material price :</td>
+                        <td><input th:value="${material.price}"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" value="Delete"></td>
+                    </tr>
+                </table>
+        </form>
+    </div>
+</body>
+</html>
