@@ -11,10 +11,6 @@ import org.springframework.data.domain.Pageable;
 public class PhoneServiceImpl implements PhoneService {
     @Autowired
     private PhoneRepository phoneRepository;
-    @Override
-    public Iterable<Phone> findAll() {
-        return phoneRepository.findAll();
-    }
 
     @Override
     public Phone findById(Long id) {
