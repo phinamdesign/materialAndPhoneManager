@@ -19,11 +19,12 @@ public class Book {
     public Book() {
     }
 
-    public Book(String dateOfPurchase,String name, String author, Long price) {
+    public Book(String dateOfPurchase,String name, String author, Long price, Category category) {
         this.dateOfPurchase = dateOfPurchase;
         this.name = name;
         this.author = author;
         this.price = price;
+        this.category = category;
     }
 
     public Long getId() {
@@ -64,5 +65,13 @@ public class Book {
 
     public void setPrice(Long price) {
         this.price = price;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

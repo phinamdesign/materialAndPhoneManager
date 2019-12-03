@@ -1,23 +1,47 @@
 package com.codegym.cms.controller;
 
 import com.codegym.cms.model.Book;
+import com.codegym.cms.model.Category;
 import com.codegym.cms.service.BookService;
+import com.codegym.cms.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Optional;
 
 @Controller
 public class BookController {
     @Autowired
     BookService bookService;
 
+    @Autowired
+    private CategoryService categoryService ;
+
+    @ModelAttribute("category")
+    public Iterable<Category> categories(){
+        return categoryService.findAll();
+    }
+
+//    @GetMapping("/books")
+//    public ModelAndView listBook(Pageable pageable){
+//        Iterable<Book> books = bookService.findAll(pageable);
+//        ModelAndView modelAndView = new ModelAndView("/book/list");
+//        modelAndView.addObject("book", books);
+//        return modelAndView;
+//    }
+
     @GetMapping("/books")
-    public ModelAndView listBook(){
-        Iterable<Book> books = bookService.findAll();
+    public ModelAndView listCustomers(@RequestParam("s") Optional<String> s, Pageable pageable){
+        Page<Book> books;
+        if(s.isPresent()){
+            books = bookService.findAllByNameContaining(s.get(), pageable);
+        } else {
+            books = bookService.findAll(pageable);
+        }
         ModelAndView modelAndView = new ModelAndView("/book/list");
         modelAndView.addObject("book", books);
         return modelAndView;

@@ -2,11 +2,11 @@ package com.codegym.cms.service;
 
 import com.codegym.cms.model.Book;
 import com.codegym.cms.model.Category;
-
-import java.awt.print.Pageable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface BookService {
-    Iterable<Book> findAll();
+    Page<Book> findAll(Pageable pageable);
 
     Book findById(Long id);
 
@@ -15,4 +15,6 @@ public interface BookService {
     void remove(Long id);
 
     Iterable<Book> findAllByCategory(Category category);
+
+    Page<Book> findAllByNameContaining(String name, Pageable pageable);
 }

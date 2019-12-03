@@ -32,14 +32,14 @@
                 <td>Book price :</td>
                 <td><input type="text" th:field="*{price}"></td>
             </tr>
-<!--            <tr>-->
-<!--                <td>Author :</td>-->
-<!--                <td>-->
-<!--                    <select th:field="*{author}">-->
-<!--                        <option th:each="p : ${author}" th:value="${p.id}" th:text="${p.name}"></option>-->
-<!--                    </select>-->
-<!--                </td>-->
-<!--            </tr>-->
+            <tr>
+                <td>Category :</td>
+                <td>
+                    <select th:field="*{category}">
+                        <option th:each="p : ${category}" th:value="${p.id}" th:text="${p.name}"></option>
+                    </select>
+                </td>
+            </tr>
             <tr>
                 <td></td>
                 <td><input type="submit" value="Create"></td>

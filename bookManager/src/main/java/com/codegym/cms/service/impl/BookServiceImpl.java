@@ -5,16 +5,17 @@ import com.codegym.cms.model.Category;
 import com.codegym.cms.repository.BookRepository;
 import com.codegym.cms.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.awt.print.Pageable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public class BookServiceImpl implements BookService {
 
     @Autowired
     BookRepository bookRepository;
+
     @Override
-    public Iterable<Book> findAll() {
-        return bookRepository.findAll();
+    public Page<Book> findAll(Pageable pageable) {
+        return bookRepository.findAll(pageable);
     }
 
     @Override
@@ -35,5 +36,10 @@ public class BookServiceImpl implements BookService {
     @Override
     public Iterable<Book> findAllByCategory(Category category) {
         return bookRepository.findAllByCategory(category);
+    }
+
+    @Override
+    public Page<Book> findAllByNameContaining(String name, Pageable pageable) {
+        return bookRepository.findAllByNameContaining(name, pageable);
     }
 }
